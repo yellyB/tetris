@@ -5,7 +5,7 @@ import Game from "./components/Game";
 function App() {
   return (
     <div className="App">
-      <Game row={20} column={10} />
+      <Game rows={20} columns={10} />
     </div>
   );
 }
