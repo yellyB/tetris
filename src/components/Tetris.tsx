@@ -6,6 +6,7 @@ import { useBoard } from "../hooks/useBoard";
 import { useGameStats } from "../hooks/useGameStats";
 import Board from "./Board";
 import GameStats from "./GameStats";
+import Previews from "./Previews";
 
 const Tetris = ({
   rows,
@@ -17,10 +18,13 @@ const Tetris = ({
   const [gameStats, addLinesCleared] = useGameStats();
   const [board] = useBoard({ rows, columns });
 
+  const player = { tetrominoes: [] };
+
   return (
     <Container>
       <Board board={board} />
       <GameStats gameStats={gameStats} />
+      <Previews tetrominoes={player.tetrominoes} />
     </Container>
   );
 };

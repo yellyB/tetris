@@ -28,7 +28,7 @@ const Container = styled.div`
   display: grid;
   grid-gap: 2px;
   width: 45vw;
-  height: 90vw;
+  height: 90vh;
   background: rgb(32, 0, 64);
   border: 10px solid rgb(32, 0, 64);
   border-radius: 10px;
