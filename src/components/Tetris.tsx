@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { IBoard } from "../common/interface";
 import { useBoard } from "../hooks/useBoard";
 import { useGameStats } from "../hooks/useGameStats";
+import { usePlayer } from "../hooks/usePlayer";
 import Board from "./Board";
 import GameStats from "./GameStats";
 import Previews from "./Previews";
@@ -17,8 +18,7 @@ const Tetris = ({
 }) => {
   const [gameStats, addLinesCleared] = useGameStats();
   const [board] = useBoard({ rows, columns });
-
-  const player = { tetrominoes: [] };
+  const [player, setPlayer, resetPlayer] = usePlayer();
 
   return (
     <Container>
