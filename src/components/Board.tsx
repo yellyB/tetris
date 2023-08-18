@@ -8,10 +8,6 @@ const Board = ({ board }: any) => {
     gridTemplateColumns: `repeat(${board.size.columns}, 1fr)`,
   };
 
-  useEffect(() => {
-    board.rows.map((item: any) => console.log(item));
-  }, [board]);
-
   return (
     <Container style={boardStyles}>
       {board.rows?.map((row: any[], y: any) =>
