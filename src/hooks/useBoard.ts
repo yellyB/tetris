@@ -1,9 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IBoard } from "../common/interface";
-import { buildBoard } from "../business/Board";
+import { buildBoard, nextBoard } from "../business/Board";
 
-export const useBoard = ({ rows, columns }: IBoard) => {
-  const [board] = useState(buildBoard({ rows, columns }));
+export const useBoard = ({
+  rows,
+  columns,
+  player,
+  resetPlayer,
+  addLinesCleared,
+}: IBoard) => {
+  const [board, setBoard] = useState(buildBoard({ rows, columns }));
+
+  useEffect(() => {
+    setBoard((previousBoard) =>
+      nextBoard({
+        board: previousBoard,
+        player,
+        resetPlayer,
+        addLinesCleared,
+      })
+    );
+  }, [player, resetPlayer, addLinesCleared]);
 
   return [board];
 };

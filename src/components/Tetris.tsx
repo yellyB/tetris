@@ -17,8 +17,14 @@ const Tetris = ({
   setGameOver: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [gameStats, addLinesCleared] = useGameStats();
-  const [board] = useBoard({ rows, columns });
   const [player, setPlayer, resetPlayer] = usePlayer();
+  const [board] = useBoard({
+    rows,
+    columns,
+    player,
+    resetPlayer,
+    addLinesCleared,
+  });
 
   return (
     <Container>
