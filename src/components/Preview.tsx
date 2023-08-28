@@ -13,7 +13,7 @@ const Preview = ({ tetromino, index }: IProps) => {
 
   const board = buildBoard({ rows: 4, columns: 4 });
 
-  const style = { top: `${index * 15}vw` };
+  const style = { top: `${index * 15}vh` };
 
   board.rows = transferToBoard({
     className,
@@ -50,8 +50,8 @@ const PreviewBoard = styled.div`
   grid-gap: 2px;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  width: 11vw;
-  height: 11vw;
+  width: 11vh;
+  height: 11vh;
 `;
 
 export default Preview;

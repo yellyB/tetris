@@ -23,8 +23,8 @@ const Container = styled.div`
   margin: 2em auto;
   display: grid;
   grid-gap: 2px;
-  width: 45vw;
-  height: 90vh;
+  width: 40vh;
+  height: 80vh;
   background: rgb(32, 0, 64);
   border: 10px solid rgb(32, 0, 64);
   border-radius: 10px;
