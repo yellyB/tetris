@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Action, actionForKey } from "../business/Input";
 
 const GameController = ({
   board,
@@ -7,12 +8,13 @@ const GameController = ({
   setGameOver,
   setPlayer,
 }: any) => {
-  const handleKeyDown = ({ code }: any) => {
-    console.log("KeyDown:", code);
+  const handleKeyUp = ({ code }: any) => {
+    const action = actionForKey(code);
+    if (action === Action.Quit) setGameOver(true);
   };
 
-  const handleKeyUp = ({ code }: any) => {
-    console.log("KeyUp:", code);
+  const handleKeyDown = ({ code }: any) => {
+    console.log("KeyDown:", code);
   };
 
   return (
