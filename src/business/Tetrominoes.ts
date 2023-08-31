@@ -66,6 +66,23 @@ export const randomTetromino = () => {
   return TETROMINOES[key];
 };
 
+export const rotate = ({
+  piece,
+  direction,
+}: {
+  piece: number[][];
+  direction: number;
+}) => {
+  // direction이 양수면 시계방향, 음수면 시계 반대방향
+  const newPiece = piece.map((_: any, index: number) =>
+    piece.map((column: any) => column[index])
+  );
+
+  if (direction > 0) return newPiece.map((row: any) => row.reverse());
+
+  return newPiece.reverse();
+};
+
 interface IProps {
   className: string;
   isOccupied: boolean;
