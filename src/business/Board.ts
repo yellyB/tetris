@@ -33,6 +33,8 @@ export const nextBoard = ({
     shape: tetromino.shape,
   });
 
+  if (player.collided || player.isFastDropping) resetPlayer(); // 바닥에 다다르면 다음 조각 소환
+
   return { rows, size: { ...board.size } };
 };
 
