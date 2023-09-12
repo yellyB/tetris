@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Action, actionForKey } from "../business/Input";
 import { playerController } from "../business/PlayerController";
+import { useDropTime } from "../hooks/useDropTime";
 import { useInterval } from "../hooks/useInterval";
 
 const GameController = ({
@@ -10,11 +11,11 @@ const GameController = ({
   setGameOver,
   setPlayer,
 }: any) => {
-  const GAME_SPEED = 1000; // 작을수록 빠름
+  const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({ gameStats });
 
   useInterval(() => {
     handleInput({ action: Action.SlowDrop });
-  }, GAME_SPEED);
+  }, dropTime);
 
   const handleInput = ({ action }: any) => {
     playerController({
@@ -28,12 +29,16 @@ const GameController = ({
 
   const handleKeyUp = ({ code }: any) => {
     const action = actionForKey(code);
-    if (action === Action.Quit) setGameOver(true);
   };
 
   const handleKeyDown = ({ code }: any) => {
     const action = actionForKey(code);
-    handleInput({ action });
+
+    if (action === Action.Pause) {
+      if (dropTime) pauseDropTime();
+      else resumeDropTime();
+    } else if (action === Action.Quit) setGameOver(true);
+    else handleInput({ action });
   };
 
   return (
