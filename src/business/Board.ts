@@ -1,4 +1,4 @@
-import { IBoard } from "../common/interface";
+import { IBoard, IBoardSnapShot } from "../common/interface";
 import { defaultCell } from "./Cell";
 import { transferToBoard } from "./Tetrominoes";
 
@@ -38,7 +38,7 @@ export const nextBoard = ({
   return { rows, size: { ...board.size } };
 };
 
-export const isWithinBoard = ({ board, position, shape }: any) => {
+export const isWithinBoard = ({ board, position, shape }: IBoardSnapShot) => {
   for (let y = 0; y < shape.length; y++) {
     const row = y + position.row;
 
@@ -55,7 +55,7 @@ export const isWithinBoard = ({ board, position, shape }: any) => {
   return true;
 };
 
-export const hasCollision = ({ board, position, shape }: any) => {
+export const hasCollision = ({ board, position, shape }: IBoardSnapShot) => {
   for (let y = 0; y < shape.length; y++) {
     const row = y + position.row;
 

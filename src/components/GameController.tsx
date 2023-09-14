@@ -4,6 +4,10 @@ import { playerController } from "../business/PlayerController";
 import { useDropTime } from "../hooks/useDropTime";
 import { useInterval } from "../hooks/useInterval";
 
+interface KeyEvent {
+  code: string;
+}
+
 const GameController = ({
   board,
   gameStats,
@@ -27,11 +31,12 @@ const GameController = ({
     });
   };
 
-  const handleKeyUp = ({ code }: any) => {
+  const handleKeyUp = ({ code }: KeyEvent) => {
+    console.log(code);
     const action = actionForKey(code);
   };
 
-  const handleKeyDown = ({ code }: any) => {
+  const handleKeyDown = ({ code }: KeyEvent) => {
     const action = actionForKey(code);
 
     if (action === Action.Pause) {

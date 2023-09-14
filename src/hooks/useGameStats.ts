@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { IGameStats } from "../common/interface";
 
 const buildGameStats = () => ({
   level: 1,
@@ -8,9 +9,9 @@ const buildGameStats = () => ({
 });
 
 export const useGameStats = () => {
-  const [gameStats, setGameStats] = useState(buildGameStats());
+  const [gameStats, setGameStats] = useState<IGameStats>(buildGameStats());
 
   const addLinesCleared = useCallback(() => {}, []);
 
-  return [gameStats, addLinesCleared];
+  return [gameStats, addLinesCleared] as const;
 };

@@ -1,7 +1,12 @@
 import React, { memo } from "react";
 import styled from "styled-components";
+import { IGameStats } from "../common/interface";
 
-const GameStats = ({ gameStats }: any) => {
+interface Props {
+  gameStats: IGameStats;
+}
+
+const GameStats = ({ gameStats }: Props) => {
   const { level, points, linesCompleted, linesPerLevel } = gameStats;
   const linesToLevel = linesPerLevel - linesCompleted;
 

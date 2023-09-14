@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
+import { IGameStats } from "../common/interface";
 
 const defaultDropTime = 1000;
 const minimumDropTime = 100;
 const speedIncrement = 50;
 
-export const useDropTime = ({ gameStats }: any) => {
-  const [dropTime, setDropTime] = useState<any>(defaultDropTime);
-  const [previousDropTime, setPreviousDropTime] = useState<any>();
+interface Props {
+  gameStats: IGameStats;
+}
+
+export const useDropTime = ({ gameStats }: Props) => {
+  const [dropTime, setDropTime] = useState<number | null>(defaultDropTime);
+  const [previousDropTime, setPreviousDropTime] = useState<number | null>();
 
   const pauseDropTime = useCallback(() => {
     if (dropTime) setPreviousDropTime(dropTime);

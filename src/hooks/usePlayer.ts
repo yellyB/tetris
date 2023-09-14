@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 import { randomTetromino } from "../business/Tetrominoes";
+import { IPlayer } from "../common/interface";
 
-const buildPlayer = (previous?: any) => {
+const buildPlayer = (previous?: IPlayer) => {
   let tetrominoes: any;
 
   if (previous) {
@@ -23,7 +24,7 @@ const buildPlayer = (previous?: any) => {
 };
 
 export const usePlayer = () => {
-  const [player, setPlayer] = useState(buildPlayer());
+  const [player, setPlayer] = useState<IPlayer>(buildPlayer());
 
   const resetPlayer = useCallback(() => {
     setPlayer((prev) => buildPlayer(prev));

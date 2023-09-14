@@ -23,7 +23,7 @@ const attempRotation = ({ board, player, setPlayer }: any) => {
   }
 };
 
-const movePlayer = ({ delta, position, shape, board }: any) => {
+const movePlayer = ({ delta, board, position, shape }: any) => {
   const desiredNextPosition = {
     row: position.row + delta.row,
     column: position.column + delta.column,
