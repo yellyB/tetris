@@ -1,15 +1,15 @@
-interface ITables {
+export interface ITables {
   rows: number;
   columns: number;
 }
-interface ITable {
+interface IPosition {
   row: number;
   column: number;
 }
 
-export interface IBoard extends ITables {
-  player?: any;
-  resetPlayer?: any;
+export interface IUseBoardParams extends ITables {
+  player?: IPlayer;
+  resetPlayer?: () => void;
   addLinesCleared?: any;
 }
 
@@ -23,7 +23,7 @@ export interface IGameStats {
 export interface IPlayer {
   collided: boolean;
   isFaseDropping: boolean;
-  position: ITable;
+  position: IPosition;
   tetrominoes: any;
   tetromino: any;
 }
@@ -34,6 +34,21 @@ export interface Tetromino {
 
 export interface IBoardSnapShot {
   board: any;
-  position: any;
-  shape: any;
+  position: IPosition;
+  shape: number[][];
+}
+
+export interface ICell {
+  occupied: boolean;
+  className: string;
+}
+export interface IBoard {
+  rows: ICell[][];
+  size: ITables;
+}
+export interface INextBoardFuncParams {
+  board: IBoard;
+  player: any;
+  resetPlayer: any;
+  addLinesCleared: any;
 }

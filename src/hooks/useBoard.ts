@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IBoard } from "../common/interface";
+import { IUseBoardParams } from "../common/interface";
 import { buildBoard, nextBoard } from "../business/Board";
 
 export const useBoard = ({
@@ -8,7 +8,7 @@ export const useBoard = ({
   player,
   resetPlayer,
   addLinesCleared,
-}: IBoard) => {
+}: IUseBoardParams) => {
   const [board, setBoard] = useState(buildBoard({ rows, columns }));
 
   useEffect(() => {

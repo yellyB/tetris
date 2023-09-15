@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import styled from "styled-components";
 
-import { IBoard } from "../common/interface";
+import { ITables } from "../common/interface";
 import { useBoard } from "../hooks/useBoard";
 import { useGameStats } from "../hooks/useGameStats";
 import { usePlayer } from "../hooks/usePlayer";
@@ -14,7 +14,7 @@ const Tetris = ({
   rows,
   columns,
   setGameOver,
-}: IBoard & {
+}: ITables & {
   setGameOver: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [gameStats, addLinesCleared] = useGameStats();

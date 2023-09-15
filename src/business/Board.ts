@@ -1,8 +1,12 @@
-import { IBoard, IBoardSnapShot } from "../common/interface";
+import {
+  IBoardSnapShot,
+  INextBoardFuncParams,
+  ITables,
+} from "../common/interface";
 import { defaultCell } from "./Cell";
 import { transferToBoard } from "./Tetrominoes";
 
-export const buildBoard = ({ rows, columns }: IBoard) => {
+export const buildBoard = ({ rows, columns }: ITables) => {
   const builtRows = Array.from({ length: rows }, () =>
     Array.from({ length: columns }, () => ({ ...defaultCell }))
   );
@@ -18,7 +22,7 @@ export const nextBoard = ({
   player,
   resetPlayer,
   addLinesCleared,
-}: any) => {
+}: INextBoardFuncParams) => {
   const { tetromino, position } = player;
 
   let rows = board.rows.map((row: any) =>

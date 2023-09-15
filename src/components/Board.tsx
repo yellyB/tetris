@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import styled from "styled-components";
+import { IBoard, ICell } from "../common/interface";
 import BoardCell from "./BoardCell";
 
-const Board = ({ board }: any) => {
+const Board = ({ board }: { board: IBoard }) => {
   const boardStyles = {
     gridTemplateRows: `repeat(${board.size.rows}, 1fr)`,
     gridTemplateColumns: `repeat(${board.size.columns}, 1fr)`,
@@ -10,8 +10,8 @@ const Board = ({ board }: any) => {
 
   return (
     <Container style={boardStyles}>
-      {board.rows?.map((row: any[], y: any) =>
-        row.map((cell: any, x: any) => (
+      {board.rows?.map((row: ICell[], y: number) =>
+        row.map((cell: ICell, x: number) => (
           <BoardCell key={x * board.size.columns + x} cell={cell} />
         ))
       )}
