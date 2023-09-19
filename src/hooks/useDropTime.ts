@@ -21,7 +21,7 @@ export const useDropTime = ({ gameStats }: Props) => {
   const resumeDropTime = useCallback(() => {
     if (!previousDropTime) return;
     setDropTime(previousDropTime);
-    setPreviousDropTime(null);
+    // setPreviousDropTime(null);  // 굳이 비울 필요 있을까..?
   }, [previousDropTime]);
 
   useEffect(() => {

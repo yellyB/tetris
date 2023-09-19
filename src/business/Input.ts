@@ -21,3 +21,7 @@ export const Key: any = {
 export const actionForKey = (keyCode: string) => {
   return Key[keyCode];
 };
+
+export const actionIsDrop = (action: string) => {
+  return [Action.SlowDrop, Action.FastDrop].includes(action);
+};

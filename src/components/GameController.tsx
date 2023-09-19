@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Action, actionForKey } from "../business/Input";
+import { Action, actionForKey, actionIsDrop } from "../business/Input";
 import { playerController } from "../business/PlayerController";
 import { useDropTime } from "../hooks/useDropTime";
 import { useInterval } from "../hooks/useInterval";
@@ -32,8 +32,8 @@ const GameController = ({
   };
 
   const handleKeyUp = ({ code }: KeyEvent) => {
-    console.log(code);
     const action = actionForKey(code);
+    if (actionIsDrop(action)) resumeDropTime(); // 게임 일시정지했는데 내려가는 키 누르면 다시 시작처리
   };
 
   const handleKeyDown = ({ code }: KeyEvent) => {
@@ -42,8 +42,16 @@ const GameController = ({
     if (action === Action.Pause) {
       if (dropTime) pauseDropTime();
       else resumeDropTime();
-    } else if (action === Action.Quit) setGameOver(true);
-    else handleInput({ action });
+      return;
+    }
+
+    if (action === Action.Quit) {
+      setGameOver(true);
+      return;
+    }
+
+    // if (actionIsDrop(action)) pauseDropTime();  // 필요 있나..?
+    handleInput({ action });
   };
 
   return (
