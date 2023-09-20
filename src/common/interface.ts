@@ -2,7 +2,7 @@ export interface ITables {
   rows: number;
   columns: number;
 }
-interface IPosition {
+export interface IDelta {
   row: number;
   column: number;
 }
@@ -23,7 +23,7 @@ export interface IGameStats {
 export interface IPlayer {
   collided: boolean;
   isFaseDropping: boolean;
-  position: IPosition;
+  position: IDelta;
   tetrominoes: any;
   tetromino: any;
 }
@@ -34,7 +34,7 @@ export interface Tetromino {
 
 export interface IBoardSnapShot {
   board: any;
-  position: IPosition;
+  position: IDelta;
   shape: number[][];
 }
 

@@ -50,7 +50,7 @@ const GameController = ({
       return;
     }
 
-    // if (actionIsDrop(action)) pauseDropTime();  // 필요 있나..?
+    // if (actionIsDrop(action)) pauseDropTime();  // todo: 필요 있나..?
     handleInput({ action });
   };
 

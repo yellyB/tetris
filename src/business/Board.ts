@@ -1,9 +1,11 @@
 import {
   IBoardSnapShot,
+  ICell,
   INextBoardFuncParams,
   ITables,
 } from "../common/interface";
 import { defaultCell } from "./Cell";
+import { movePlayer } from "./PlayerController";
 import { transferToBoard } from "./Tetrominoes";
 
 export const buildBoard = ({ rows, columns }: ITables) => {
@@ -17,6 +19,24 @@ export const buildBoard = ({ rows, columns }: ITables) => {
   };
 };
 
+const findDropPosition = ({ board, position, shape }: IBoardSnapShot) => {
+  let max = board.size.rows - position.row + 1;
+  let row = 0;
+
+  for (let i = 0; i < max; i++) {
+    const delta = { row: i, column: 0 };
+    const result = movePlayer({ delta, board, position, shape });
+    const { collided } = result;
+
+    if (collided) {
+      row = position.row + i - 1;
+      break;
+    }
+  }
+
+  return { ...position, row };
+};
+
 export const nextBoard = ({
   board,
   player,
@@ -25,10 +45,31 @@ export const nextBoard = ({
 }: INextBoardFuncParams) => {
   const { tetromino, position } = player;
 
-  let rows = board.rows.map((row: any) =>
-    row.map((cell: any) => (cell.occupied ? cell : { ...defaultCell }))
+  let rows = board.rows.map((row: ICell[]) =>
+    row.map((cell: ICell) => (cell.occupied ? cell : { ...defaultCell }))
   );
 
+  const dropPosition = findDropPosition({
+    board,
+    position,
+    shape: tetromino.shape,
+  });
+
+  const className = `${tetromino.className} ${
+    player.isFastDropping ? "" : "ghost"
+  }`;
+
+  // ghost 를 위한 부분
+  rows = transferToBoard({
+    className,
+    isOccupied: player.isFastDropping,
+    position: dropPosition,
+    rows,
+    shape: tetromino.shape,
+  });
+
+  // todo: if 문 왜 필요하지? if문은 좀 더 생각해보기
+  // if (!player.isFastDropping) {
   rows = transferToBoard({
     className: tetromino.className,
     isOccupied: player.collided,
@@ -36,6 +77,9 @@ export const nextBoard = ({
     rows,
     shape: tetromino.shape,
   });
+  // }
+
+  console.log("========", rows);
 
   if (player.collided || player.isFastDropping) resetPlayer(); // 바닥에 다다르면 다음 조각 소환
 

@@ -1,3 +1,4 @@
+import { IBoardSnapShot, IDelta } from "../common/interface";
 import { hasCollision, isWithinBoard } from "./Board";
 import { Action } from "./Input";
 import { rotate } from "./Tetrominoes";
@@ -23,7 +24,12 @@ const attempRotation = ({ board, player, setPlayer }: any) => {
   }
 };
 
-const movePlayer = ({ delta, board, position, shape }: any) => {
+export const movePlayer = ({
+  delta,
+  board,
+  position,
+  shape,
+}: IBoardSnapShot & { delta: IDelta }) => {
   const desiredNextPosition = {
     row: position.row + delta.row,
     column: position.column + delta.column,

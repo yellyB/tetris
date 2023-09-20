@@ -1,3 +1,5 @@
+import { ICell, IDelta } from "../common/interface";
+
 const className = "tetromino";
 
 export const TETROMINOES: any = {
@@ -86,9 +88,9 @@ export const rotate = ({
 interface IProps {
   className: string;
   isOccupied: boolean;
-  position: any;
-  rows: any;
-  shape: any;
+  position: IDelta;
+  rows: ICell[][];
+  shape: number[][];
 }
 
 export const transferToBoard = ({
@@ -98,8 +100,8 @@ export const transferToBoard = ({
   rows,
   shape,
 }: IProps) => {
-  shape.forEach((row: any, y: number) => {
-    row.forEach((cell: any, x: number) => {
+  shape.forEach((row: number[], y: number) => {
+    row.forEach((cell: number, x: number) => {
       if (cell) {
         const occupied = isOccupied;
         const _y = y + position.row;
