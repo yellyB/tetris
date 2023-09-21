@@ -79,7 +79,20 @@ export const nextBoard = ({
   });
   // }
 
-  console.log("========", rows);
+  const blankRow = rows[0].map((_) => ({ ...defaultCell }));
+  let linesCleared = 0;
+
+  rows = rows.reduce((acc, row) => {
+    if (row.every((column) => column.occupied)) {
+      linesCleared++;
+      acc.unshift([...blankRow] as any);
+    } else {
+      acc.push(row as any);
+    }
+    return acc;
+  }, []) as any;
+
+  if (linesCleared > 0) addLinesCleared(linesCleared);
 
   if (player.collided || player.isFastDropping) resetPlayer(); // 바닥에 다다르면 다음 조각 소환
 
