@@ -39,9 +39,18 @@ const Tetris = ({
         setGameOver={setGameOver}
         setPlayer={setPlayer}
       />
+      <Guide>
+        P: PAUSE/RESUME
+        <br />
+        Q: QUIT
+        <br />
+        Space: FAST DROP
+      </Guide>
     </Container>
   );
 };
+
+const Guide = styled.div``;
 
 const Container = styled.div`
   position: relative;
